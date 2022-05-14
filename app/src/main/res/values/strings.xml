@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Gahlificapption</string>
+    <string name="entryDescription">Entry description</string>
+    <string name="entryCost">Entry cost</string>
+    <string name="sendRequestButtonText">Create value !</string>
+    <string name="title_activity_budget">BudgetActivity</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="goto_budget_button">Budget</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>
