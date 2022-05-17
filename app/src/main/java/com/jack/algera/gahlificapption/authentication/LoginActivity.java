@@ -12,7 +12,6 @@ import com.jack.algera.gahlificapption.MainActivity;
 import com.jack.algera.gahlificapption.R;
 import com.jack.algera.gahlificapption.http.responseHandlers.LoginHTTPHandler;
 import com.jack.algera.gahlificapption.utils.OnAsyncTaskCompleted;
-import com.jack.algera.gahlificapption.utils.PreferencesUtils;
 
 public class LoginActivity extends AppCompatActivity implements OnAsyncTaskCompleted {
 
@@ -20,8 +19,6 @@ public class LoginActivity extends AppCompatActivity implements OnAsyncTaskCompl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        PreferencesUtils preferencesUtils = new PreferencesUtils(getApplicationContext());
 
         EditText usernameTextEdit = findViewById(R.id.username);
         EditText passwordTextEdit = findViewById(R.id.password);
@@ -35,8 +32,8 @@ public class LoginActivity extends AppCompatActivity implements OnAsyncTaskCompl
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please provide a username and password !", Toast.LENGTH_SHORT).show();
             } else {
-                LoginHTTPHandler loginHTTPHandler = new LoginHTTPHandler(getApplicationContext(), preferencesUtils, this, username, password);
-                loginHTTPHandler.execute();
+                LoginHTTPHandler loginHTTPHandler = new LoginHTTPHandler(getApplicationContext(), this, username, password);
+                loginHTTPHandler.start();
             }
         });
     }

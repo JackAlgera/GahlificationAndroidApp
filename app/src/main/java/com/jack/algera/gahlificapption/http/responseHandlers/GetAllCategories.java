@@ -5,7 +5,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.jack.algera.gahlificapption.http.RetrofitClient;
-import com.jack.algera.gahlificapption.utils.PreferencesUtils;
 
 import java.util.List;
 
@@ -17,18 +16,16 @@ public class GetAllCategories implements Callback<List<String>> {
 
     private final Spinner spinner;
     private final Context context;
-    private final PreferencesUtils preferencesUtils;
 
-    public GetAllCategories(Context context, Spinner spinner, PreferencesUtils preferencesUtils) {
+    public GetAllCategories(Context context, Spinner spinner) {
         this.spinner = spinner;
         this.context = context;
-        this.preferencesUtils = preferencesUtils;
     }
 
     public void start() {
         Call<List<String>> call = RetrofitClient.getInstance(context)
                 .getCachedBudgetApi()
-                .listCategories("Bearer " + preferencesUtils.getToken());
+                .listCategories();
         call.enqueue(this);
     }
 
@@ -39,7 +36,7 @@ public class GetAllCategories implements Callback<List<String>> {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, catergoriesList);
             spinner.setAdapter(adapter);
         } else {
-            System.out.println("Shit didn't work");
+            System.out.println("GetAllCategories didn't work");
             System.out.println(response.errorBody());
         }
     }

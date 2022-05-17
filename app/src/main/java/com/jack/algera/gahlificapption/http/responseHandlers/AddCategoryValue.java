@@ -1,57 +1,53 @@
 package com.jack.algera.gahlificapption.http.responseHandlers;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.jack.algera.gahlificapption.http.BackendAPIClient;
-import com.jack.algera.gahlificapption.utils.PreferencesUtils;
+import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryRequest;
+import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryResponse;
+import com.jack.algera.gahlificapption.http.RetrofitClient;
 
-import java.io.IOException;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class AddCategoryValue extends AsyncTask<Void, Void, Integer> {
+public class AddCategoryValue implements Callback<AddCategoryEntryResponse> {
 
     private final Context context;
-    private final PreferencesUtils preferencesUtils;
     private final String sheetName;
     private final String category;
-    private final String cost;
-    private final String description;
+    private final AddCategoryEntryRequest body;
 
-    public AddCategoryValue(Context context, PreferencesUtils preferencesUtils, String sheetName, String category, String cost, String description) {
+    public AddCategoryValue(Context context, String sheetName, String category, AddCategoryEntryRequest body) {
         this.context = context;
-        this.preferencesUtils = preferencesUtils;
         this.sheetName = sheetName;
         this.category = category;
-        this.cost = cost;
-        this.description = description;
+        this.body = body;
     }
 
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-
+    public void start() {
         Toast.makeText(context, "Adding cost...", Toast.LENGTH_SHORT).show();
+
+        Call<AddCategoryEntryResponse> call = RetrofitClient.getInstance(context)
+                .getBudgetApi()
+                .addCategoryEntry(sheetName, category, body);
+        call.enqueue(this);
     }
 
     @Override
-    protected Integer doInBackground(Void... voids) {
-        try {
-            return BackendAPIClient.addCategoryValue(preferencesUtils, sheetName, category, cost, description);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    @Override
-    protected void onPostExecute(Integer responseCode) {
-        super.onPostExecute(responseCode);
-
-        if (responseCode == 200) {
-            Toast.makeText(context, String.format("Added %s to %s ! :D", cost, category), Toast.LENGTH_SHORT).show();
+    public void onResponse(Call<AddCategoryEntryResponse> call, Response<AddCategoryEntryResponse> response) {
+        if (response.isSuccessful()) {
+            Toast.makeText(context, String.format("Added %s to %s ! :D", body.getCost(), category), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(context, "On no, it failed... :(", Toast.LENGTH_SHORT).show();
+            System.out.println("AddCategoryValue didn't work");
+            System.out.println(response.errorBody());
         }
+    }
+
+    @Override
+    public void onFailure(Call<AddCategoryEntryResponse> call, Throwable t) {
+        t.printStackTrace();
+        Toast.makeText(context, "On no, it failed... what? :(", Toast.LENGTH_SHORT).show();
     }
 }

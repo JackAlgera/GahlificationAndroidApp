@@ -25,58 +25,6 @@ import java.util.Map;
 public class BackendAPIClient {
     private static final String BASE_URL = "https://gahlification.herokuapp.com/api";
 
-    public static List<String> getAllSheetNames(PreferencesUtils preferencesUtils) throws IOException {
-        List<String> sheetNames = new ArrayList<>();
-
-        URL url = new URL(BASE_URL + "/sheets");
-        HttpURLConnection myConnection = (HttpURLConnection) url.openConnection();
-        myConnection.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + preferencesUtils.getToken());
-
-        if (myConnection.getResponseCode() == 200) {
-            InputStream responseBody = myConnection.getInputStream();
-            InputStreamReader responseBodyReader = new InputStreamReader(responseBody, StandardCharsets.UTF_8);
-
-            JsonReader jsonReader = new JsonReader(responseBodyReader);
-            jsonReader.beginArray(); // Start processing the JSON object
-            while (jsonReader.hasNext()) { // Loop through all keys
-                sheetNames.add(jsonReader.nextString());
-            }
-
-            jsonReader.close();
-        } else {
-            System.out.println("getAllSheetNames didn't work");
-        }
-        myConnection.disconnect();
-        return sheetNames;
-    }
-
-    public static int addCategoryValue(PreferencesUtils preferencesUtils, String sheetName, String category, String cost, String description) throws IOException {
-        URL url = new URL(BASE_URL + "/sheets/" + sheetName + "/categories/" + category);
-
-        String jsonInputString =
-                "{" +
-                        "\"description\":" + "\"" + description + "\"," +
-                        "\"cost\":" + cost +
-                "}";
-
-        System.out.println(jsonInputString);
-
-        HttpURLConnection myConnection = (HttpURLConnection) url.openConnection();
-        myConnection.setRequestProperty(HttpHeaders.AUTHORIZATION, "Bearer " + preferencesUtils.getToken());
-        myConnection.setRequestProperty(HttpHeaders.CONTENT_TYPE, "application/json");
-        myConnection.setRequestMethod("POST");
-        myConnection.setDoOutput(true);
-
-        try(OutputStream os = myConnection.getOutputStream()) {
-            byte[] input = jsonInputString.getBytes("utf-8");
-            os.write(input, 0, input.length);
-        }
-
-        int responseCode = myConnection.getResponseCode();
-        myConnection.disconnect();
-        return responseCode;
-    }
-
     public static int login(PreferencesUtils preferencesUtils, String username, String password) throws IOException {
         URL url = new URL(BASE_URL + "/authenticate");
 
