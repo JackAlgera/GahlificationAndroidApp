@@ -20,20 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupCache();
 
         PreferencesUtils preferencesUtils = new PreferencesUtils(getApplicationContext());
 
         if (!preferencesUtils.isLoggedIn()) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-        }
-
-        try {
-            File httpCacheDir = new File(this.getCacheDir(), "http");
-            long httpCacheSize = 30 * 1024 * 1024; // 30 MiB
-            HttpResponseCache.install(httpCacheDir, httpCacheSize);
-        } catch (IOException e) {
-            System.out.println("HTTP response cache installation failed:\" + e");
         }
 
         Button gotoBudgetButton = findViewById(R.id.goto_budget_button);
@@ -49,6 +42,16 @@ public class MainActivity extends AppCompatActivity {
         HttpResponseCache cache = HttpResponseCache.getInstalled();
         if (cache != null) {
             cache.flush();
+        }
+    }
+
+    private void setupCache() {
+        try {
+            File httpCacheDir = new File(this.getCacheDir(), "http");
+            long httpCacheSize = 30 * 1024 * 1024; // 30 MiB
+            HttpResponseCache.install(httpCacheDir, httpCacheSize);
+        } catch (IOException e) {
+            System.out.println("HTTP response cache installation failed:\" + e");
         }
     }
 }

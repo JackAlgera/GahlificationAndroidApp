@@ -1,9 +1,9 @@
 package com.jack.algera.gahlificapption.http;
 
+import com.jack.algera.gahlificapption.authentication.UserLogin;
 import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryRequest;
 import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryResponse;
 import com.jack.algera.gahlificapption.budget.models.LoginRequest;
-import com.jack.algera.gahlificapption.budget.models.LoginResponse;
 
 import java.util.List;
 
@@ -25,5 +25,5 @@ public interface BudgetAPI {
     Call<AddCategoryEntryResponse> addCategoryEntry(@Path("sheetName") String sheetName, @Path("category") String category, @Body AddCategoryEntryRequest request);
 
     @POST("authenticate")
-    Call<LoginResponse> login(@Body LoginRequest request);
+    Call<UserLogin> login(@Body LoginRequest request);
 }

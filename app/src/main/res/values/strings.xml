@@ -8,6 +8,7 @@
     <string name="previous">Previous</string>
 
     <string name="goto_budget_button">Budget</string>
+    <string name="nothing_button">N/A</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Username</string>
     <string name="prompt_password">Password</string>
