@@ -3,12 +3,11 @@ package com.jack.algera.gahlificapption;
 import android.content.Intent;
 import android.net.http.HttpResponseCache;
 import android.os.Bundle;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.jack.algera.gahlificapption.authentication.LoginActivity;
-import com.jack.algera.gahlificapption.budget.BudgetActivity;
 import com.jack.algera.gahlificapption.utils.PreferencesUtils;
 
 import java.io.File;
@@ -19,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
         setupCache();
 
@@ -28,12 +28,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-
-        Button gotoBudgetButton = findViewById(R.id.goto_budget_button);
-        gotoBudgetButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, BudgetActivity.class);
-            startActivity(intent);
-        });
     }
 
     @Override
