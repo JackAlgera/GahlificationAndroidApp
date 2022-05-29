@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Gahlificapption"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".authentication.LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity

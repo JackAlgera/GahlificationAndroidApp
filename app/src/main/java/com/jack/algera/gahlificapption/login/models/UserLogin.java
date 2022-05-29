@@ -1,4 +1,4 @@
-package com.jack.algera.gahlificapption.authentication;
+package com.jack.algera.gahlificapption.login.models;
 
 public class UserLogin {
 

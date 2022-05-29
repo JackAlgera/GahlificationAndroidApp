@@ -1,11 +1,11 @@
-package com.jack.algera.gahlificapption.http.responseHandlers;
+package com.jack.algera.gahlificapption.web.responseHandlers;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import com.jack.algera.gahlificapption.authentication.UserLogin;
+import com.jack.algera.gahlificapption.login.models.UserLogin;
 import com.jack.algera.gahlificapption.budget.models.LoginRequest;
-import com.jack.algera.gahlificapption.http.RetrofitClient;
+import com.jack.algera.gahlificapption.web.RetrofitClient;
 import com.jack.algera.gahlificapption.utils.OnAsyncTaskCompleted;
 import com.jack.algera.gahlificapption.utils.PreferencesUtils;
 

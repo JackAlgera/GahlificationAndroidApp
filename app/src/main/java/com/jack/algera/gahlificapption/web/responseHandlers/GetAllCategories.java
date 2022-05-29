@@ -1,10 +1,10 @@
-package com.jack.algera.gahlificapption.http.responseHandlers;
+package com.jack.algera.gahlificapption.web.responseHandlers;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.jack.algera.gahlificapption.http.RetrofitClient;
+import com.jack.algera.gahlificapption.web.RetrofitClient;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GetAllSheetNames implements Callback<List<String>> {
+public class GetAllCategories implements Callback<List<String>> {
 
     private final Spinner spinner;
     private final Context context;
 
-    public GetAllSheetNames(Context context, Spinner spinner) {
+    public GetAllCategories(Context context, Spinner spinner) {
         this.spinner = spinner;
         this.context = context;
     }
@@ -25,18 +25,18 @@ public class GetAllSheetNames implements Callback<List<String>> {
     public void start() {
         Call<List<String>> call = RetrofitClient.getInstance(context)
                 .getCachedBudgetApi()
-                .listSheets();
+                .listCategories();
         call.enqueue(this);
     }
 
     @Override
     public void onResponse(Call<List<String>> call, Response<List<String>> response) {
         if (response.isSuccessful()) {
-            List<String> sheetList = response.body();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, sheetList);
+            List<String> catergoriesList = response.body();
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, catergoriesList);
             spinner.setAdapter(adapter);
         } else {
-            System.out.println("GetAllSheetNames didn't work");
+            System.out.println("GetAllCategories didn't work");
             System.out.println(response.errorBody());
         }
     }

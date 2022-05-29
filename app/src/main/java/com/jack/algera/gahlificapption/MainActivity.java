@@ -7,7 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import com.jack.algera.gahlificapption.authentication.LoginActivity;
+import com.jack.algera.gahlificapption.login.LoginActivity;
 import com.jack.algera.gahlificapption.utils.PreferencesUtils;
 
 import java.io.File;

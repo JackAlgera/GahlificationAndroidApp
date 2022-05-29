@@ -3,7 +3,7 @@ package com.jack.algera.gahlificapption.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.jack.algera.gahlificapption.authentication.UserLogin;
+import com.jack.algera.gahlificapption.login.models.UserLogin;
 
 public class PreferencesUtils {
 

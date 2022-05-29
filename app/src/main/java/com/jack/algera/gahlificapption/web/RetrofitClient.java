@@ -1,4 +1,4 @@
-package com.jack.algera.gahlificapption.http;
+package com.jack.algera.gahlificapption.web;
 
 import android.content.Context;
 

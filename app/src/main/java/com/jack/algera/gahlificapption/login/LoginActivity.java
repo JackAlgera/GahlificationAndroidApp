@@ -1,4 +1,4 @@
-package com.jack.algera.gahlificapption.authentication;
+package com.jack.algera.gahlificapption.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.jack.algera.gahlificapption.MainActivity;
 import com.jack.algera.gahlificapption.R;
-import com.jack.algera.gahlificapption.http.responseHandlers.LoginHTTPHandler;
+import com.jack.algera.gahlificapption.web.responseHandlers.LoginHTTPHandler;
 import com.jack.algera.gahlificapption.utils.OnAsyncTaskCompleted;
 
 public class LoginActivity extends AppCompatActivity implements OnAsyncTaskCompleted {
