@@ -5,6 +5,7 @@ import com.jack.algera.gahlificapption.login.models.UserLogin;
 import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryRequest;
 import com.jack.algera.gahlificapption.budget.models.AddCategoryEntryResponse;
 import com.jack.algera.gahlificapption.budget.models.LoginRequest;
+import com.jack.algera.gahlificapption.reminders.models.Reminder;
 
 import java.util.List;
 
@@ -16,6 +17,11 @@ import retrofit2.http.Path;
 
 public interface BudgetAPI {
 
+    // Authentication
+    @POST("authenticate")
+    Call<UserLogin> login(@Body LoginRequest request);
+
+    // Sheets
     @GET("sheets/names")
     Call<List<String>> listSheets();
 
@@ -28,6 +34,7 @@ public interface BudgetAPI {
     @GET("sheets/{sheetName}/categories/{category}/budget")
     Call<CategoryBudget> getCategoryBudget(@Path("sheetName") String sheetName, @Path("category") String category);
 
-    @POST("authenticate")
-    Call<UserLogin> login(@Body LoginRequest request);
+    // Reminders
+    @GET("reminders")
+    Call<List<Reminder>> getReminders();
 }

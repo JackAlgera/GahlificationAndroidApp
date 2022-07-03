@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.jack.algera.gahlificapption.MainActivity;
 import com.jack.algera.gahlificapption.R;
 import com.jack.algera.gahlificapption.budget.BudgetActivity;
+import com.jack.algera.gahlificapption.reminders.ReminderActivity;
 
 public class MainFloatingActionFragment extends Fragment {
 
@@ -25,6 +26,7 @@ public class MainFloatingActionFragment extends Fragment {
     private FloatingActionButton mainButton;
     private FloatingActionButton homeButton;
     private FloatingActionButton budgetButton;
+    private FloatingActionButton remindersButton;
 
     private boolean clicked = false;
 
@@ -47,6 +49,7 @@ public class MainFloatingActionFragment extends Fragment {
         mainButton = view.findViewById(R.id.main_fab_button);
         homeButton = view.findViewById(R.id.home_fab_button);
         budgetButton = view.findViewById(R.id.budget_fab_button);
+        remindersButton = view.findViewById(R.id.reminders_fab_button);
 
         setupAnimations();
 
@@ -67,6 +70,11 @@ public class MainFloatingActionFragment extends Fragment {
             Intent intent = new Intent(getActivity(), BudgetActivity.class);
             startActivity(intent);
         });
+
+        remindersButton.setOnClickListener(view -> {
+            Intent intent = new Intent(getActivity(), ReminderActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void onMainButtonClicked() {
@@ -80,15 +88,18 @@ public class MainFloatingActionFragment extends Fragment {
         if (!clicked) {
             homeButton.setVisibility(View.VISIBLE);
             budgetButton.setVisibility(View.VISIBLE);
+            remindersButton.setVisibility(View.VISIBLE);
         } else {
             homeButton.setVisibility(View.INVISIBLE);
             budgetButton.setVisibility(View.INVISIBLE);
+            remindersButton.setVisibility(View.INVISIBLE);
         }
     }
 
     private void setClickable(boolean clicked) {
         homeButton.setClickable(!clicked);
         budgetButton.setClickable(!clicked);
+        remindersButton.setClickable(!clicked);
     }
 
     private void setAnimation(boolean clicked) {
@@ -96,10 +107,12 @@ public class MainFloatingActionFragment extends Fragment {
             mainButton.startAnimation(rotateOpen);
             homeButton.startAnimation(fromBottom);
             budgetButton.setAnimation(fromBottom);
+            remindersButton.setAnimation(fromBottom);
         } else {
             mainButton.startAnimation(rotateClose);
             homeButton.startAnimation(toBottom);
             budgetButton.setAnimation(toBottom);
+            remindersButton.setAnimation(toBottom);
         }
     }
 }

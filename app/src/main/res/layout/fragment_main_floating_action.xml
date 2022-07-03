@@ -7,6 +7,20 @@
     tools:context=".fragments.MainFloatingActionFragment">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/reminders_fab_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/secondary"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_fab_button"
+        app:layout_constraintEnd_toEndOf="@+id/home_fab_button"
+        app:layout_constraintStart_toStartOf="@+id/home_fab_button"
+        app:srcCompat="@drawable/ic_push_pin" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/home_fab_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

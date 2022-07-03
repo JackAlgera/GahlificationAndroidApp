@@ -22,7 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    private static final String BASE_URL = "https://gahlification.herokuapp.com/api/";
+//    private static final String BASE_URL = "https://gahlification.herokuapp.com/api/";
+    private static final String BASE_URL = "http://localhost:8080/api/";
 
     private static RetrofitClient instance;
     private static PreferencesUtils preferencesUtils;

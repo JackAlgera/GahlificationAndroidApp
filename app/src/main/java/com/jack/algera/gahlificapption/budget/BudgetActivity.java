@@ -68,7 +68,8 @@ public class BudgetActivity extends AppCompatActivity implements AdapterView.OnI
         Spinner selectSheetNames = findViewById(R.id.selectSheetName);
         Spinner selectCategories = findViewById(R.id.selectCategories);
 
-        if (selectSheetNames != null && selectSheetNames.getSelectedItem() != null && !selectSheetNames.getSelectedItem().equals(SHEET_TO_IGNORE)) {LinearLayout linearLayout = findViewById(R.id.budgetEntriesContainer);
+        if (selectSheetNames != null && selectSheetNames.getSelectedItem() != null && !selectSheetNames.getSelectedItem().equals(SHEET_TO_IGNORE)) {
+            LinearLayout linearLayout = findViewById(R.id.budgetEntriesContainer);
             TextView titleTotalCostTextView = findViewById(R.id.budgetEntryTitleCost);
             GetCategoryBudget getCategoryBudget = new GetCategoryBudget(selectSheetNames.getSelectedItem().toString(), selectCategories.getSelectedItem().toString(), linearLayout, titleTotalCostTextView, getFragmentManager(), this);
             getCategoryBudget.start();
